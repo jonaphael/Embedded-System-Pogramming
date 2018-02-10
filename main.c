@@ -1,13 +1,16 @@
 int main()
 {
-  unsigned int unsigned_counter = 0;  
+  int counter = 0;  
   
-  ++unsigned_counter;
-  ++unsigned_counter;
-
-  int signed_int = 0;
-  ++signed_int;
-  ++signed_int;
+  while (counter < 20){
+    ++counter;
+    if((counter & 1) != 0){
+        /* odd number*/
+    }
+    else{
+        /* even number*/
+    }
+  }
   
   return 0;   
 }
