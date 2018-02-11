@@ -78,7 +78,7 @@
                 </option>
                 <option>
                     <name>OGChipSelectEditMenu</name>
-                    <state>CC3220SF	TexasInstruments CC3220SF</state>
+                    <state>LM4F120H5QR	TexasInstruments LM4F120H5QR</state>
                 </option>
                 <option>
                     <name>GenLowLevelInterface</name>
@@ -138,17 +138,17 @@
                 </option>
                 <option>
                     <name>GFPUDeviceSlave</name>
-                    <state>CC3220SF	TexasInstruments CC3220SF</state>
+                    <state>LM4F120H5QR	TexasInstruments LM4F120H5QR</state>
                 </option>
                 <option>
                     <name>FPU2</name>
                     <version>0</version>
-                    <state>0</state>
+                    <state>4</state>
                 </option>
                 <option>
                     <name>NrRegs</name>
                     <version>0</version>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>NEON</name>
@@ -759,7 +759,7 @@
                 </option>
                 <option>
                     <name>IlinkIcfFile</name>
-                    <state></state>
+                    <state>$TOOLKIT_DIR$\config\linker\TexasInstruments\cc3220sf.icf</state>
                 </option>
                 <option>
                     <name>IlinkIcfFileSlave</name>
@@ -819,7 +819,7 @@
                 </option>
                 <option>
                     <name>IlinkProgramEntryLabel</name>
-                    <state></state>
+                    <state>__iar_program_start</state>
                 </option>
                 <option>
                     <name>DoFill</name>
