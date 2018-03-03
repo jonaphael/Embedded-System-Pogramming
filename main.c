@@ -1,4 +1,5 @@
 #include "lm4f120h5qr.h"
+#include "delay.h"
 
 #define LED_RED   (1U << 1)
 #define LED_BLUE  (1U << 2)
@@ -14,25 +15,23 @@
 #define GPIOF_DEN  (*((unsigned int *) (GPIOF_BASE + 0x51CU))) // GPIOF DIGITAL_ENABLE
 #define GPIOF_DATA (*((unsigned int *) (GPIOF_BASE + 0x3FCU))) // GPIOF DATA REGISTER
 **************************************************************************************/
-void delay(int iter);
+unsigned fact(unsigned n);
 
-void delay(int iter)
-{
-  int volatile counter = 0;
-  while(counter < iter)
-    ++counter;
-}
 
 int main()
 {  
+  unsigned volatile x;
+  
+  x = fact(0U);
+  x = 2U + 3U * fact(1U);
+  (void)fact(5U);
+    
   SYSCTL_RCGCGPIO_R |= (1U << 5); /* Set Clock for GPIOF */
   SYSCTL_GPIOHBCTL_R |= (1U << 5); /* Enable AHB for GPIOF */
   GPIO_PORTF_AHB_DIR_R |= (LED_RED | LED_BLUE | LED_GREEN); /* Set pins 1,2 and 3 as outputs 0xEU*/
   GPIO_PORTF_AHB_DEN_R |= (LED_RED | LED_BLUE | LED_GREEN);  /* Enable Digital 0xEU*/
-
   
-  
-  while(1){
+    while(1){
     GPIO_PORTF_AHB_DATA_BITS_R[LED_BLUE] = LED_BLUE; 
     delay(DELAY_VALUE);
     
@@ -53,4 +52,20 @@ int main()
   }
   
   return 0;   
+}
+
+/*!
+ * @brief Calculate factorial of n
+ * 
+ * @param n The number that the fatorial
+ *          will be calculated
+ *
+ * @ return the n! (fatorial)
+ */
+unsigned fact(unsigned n)
+{
+    if(n == 0U)
+      return 1U;
+    
+    return n * fact(n - 1U);
 }
