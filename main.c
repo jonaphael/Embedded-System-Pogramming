@@ -15,57 +15,54 @@
 #define GPIOF_DEN  (*((unsigned int *) (GPIOF_BASE + 0x51CU))) // GPIOF DIGITAL_ENABLE
 #define GPIOF_DATA (*((unsigned int *) (GPIOF_BASE + 0x3FCU))) // GPIOF DATA REGISTER
 **************************************************************************************/
-unsigned fact(unsigned n);
 
+int *swap(int *x, int *y);
+
+int *swap(int *x, int *y)
+{
+  static int temp[2]; 
+  
+  temp[0] = *x;
+  temp[1] = *y;
+  
+  *x = temp[1];
+  *y = temp[0];
+  
+  return temp;
+}
 
 int main()
-{  
-  unsigned volatile x;
-  
-  x = fact(0U);
-  x = 2U + 3U * fact(1U);
-  (void)fact(5U);
-    
+{ 
   SYSCTL_RCGCGPIO_R |= (1U << 5); /* Set Clock for GPIOF */
   SYSCTL_GPIOHBCTL_R |= (1U << 5); /* Enable AHB for GPIOF */
   GPIO_PORTF_AHB_DIR_R |= (LED_RED | LED_BLUE | LED_GREEN); /* Set pins 1,2 and 3 as outputs 0xEU*/
   GPIO_PORTF_AHB_DEN_R |= (LED_RED | LED_BLUE | LED_GREEN);  /* Enable Digital 0xEU*/
   
-    while(1){
+  while(1){
+    int x = 1000000;
+    int y = 1000000/2;
+    int *p = swap(&x,&y);
+    
+    
     GPIO_PORTF_AHB_DATA_BITS_R[LED_BLUE] = LED_BLUE; 
-    delay(DELAY_VALUE);
+    delay(p[0]);
     
     GPIO_PORTF_AHB_DATA_BITS_R[LED_BLUE] = 0; 
-    delay(DELAY_VALUE);
-    
+    delay(p[1]);
+    /*
     GPIO_PORTF_AHB_DATA_BITS_R[LED_RED] = LED_RED; 
-    delay(DELAY_VALUE);
+    delay(x);
     
     GPIO_PORTF_AHB_DATA_BITS_R[LED_RED]= 0;
-    delay(DELAY_VALUE);
+    delay(x);
     
     GPIO_PORTF_AHB_DATA_BITS_R[LED_GREEN]= LED_GREEN;
-    delay(DELAY_VALUE);
+    delay(x);
     
     GPIO_PORTF_AHB_DATA_BITS_R[LED_GREEN]= 0;
-    delay(DELAY_VALUE);
+    delay(x);
+    */
   }
   
-  return 0;   
-}
-
-/*!
- * @brief Calculate factorial of n
- * 
- * @param n The number that the fatorial
- *          will be calculated
- *
- * @ return the n! (fatorial)
- */
-unsigned fact(unsigned n)
-{
-    if(n == 0U)
-      return 1U;
-    
-    return n * fact(n - 1U);
+ // return 0;   
 }
