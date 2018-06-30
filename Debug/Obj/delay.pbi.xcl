@@ -1,5 +1,5 @@
 "C:\Users\Jonaphael Aristil\Documents\Embedded System\Embedded-System-Pogramming\delay.c"
--std=iarc89
+-std=c11
 -ferror-limit=0
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\inc
@@ -242,11 +242,25 @@ C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\inc\c
 -D__IAR_COMPILERBASE_STR__=10.2.3.197
 -D__UNICODE_SOURCE_SUPPORTED__=1
 -D__STDC__=1
--D__STDC_VERSION__=199409L
+-D__STDC_VERSION__=201112L
+-D__STDC_NO_VLA__=1
+-D__MEMORY_ORDER_RELAXED__=0
+-D__MEMORY_ORDER_CONSUME__=1
+-D__MEMORY_ORDER_ACQUIRE__=2
+-D__MEMORY_ORDER_RELEASE__=3
+-D__MEMORY_ORDER_ACQ_REL__=4
+-D__MEMORY_ORDER_SEQ_CST__=5
+-D__STDC_UTF_16__=1
+-D__STDC_UTF_32__=1
+-D__STDC_LIB_EXT1__=201112L
+-D__STDC_NO_THREADS__=1
+-D__STDC_ISO_10646__=201103L
 -D__STDC_HOSTED__=1
 -D__EDG_IA64_ABI=1
 -D__EDG_IA64_ABI_VARIANT_CTORS_AND_DTORS_RETURN_THIS=1
 -D__EDG_IA64_ABI_USE_INT_STATIC_INIT_GUARD=1
+-D__cpp_unicode_literals=200710
+-D__cpp_static_assert=200410
 -D__EDG_TYPE_TRAITS_ENABLED=1
 -D__EDG__=1
 -D__EDG_VERSION__=413
@@ -270,6 +284,8 @@ C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\inc\c
 -D_DLIB_CONFIG_FILE_HEADER_NAME="C:\\Program Files (x86)\\IAR Systems\\Embedded Workbench 8.0\\arm\\INC\\c\\DLib_Config_Normal.h"
 -D_DLIB_CONFIG_FILE_STRING="C:\\Program Files (x86)\\IAR Systems\\Embedded Workbench 8.0\\arm\\INC\\c\\DLib_Config_Normal.h"
 -D__VERSION__="IAR ANSI C/C++ Compiler V8.20.2.14835/W32 for ARM"
+-D__ICCARM_OLD_DEFINED_VAARGS__=1
+-D__VA_STACK_ALIGN__=8
 -D__CODE_MEMORY_LIST1__()=__CODE_MEM_HELPER1__(__code, 0 )
 -D__CODE_MEMORY_LIST2__(_P1)=__CODE_MEM_HELPER2__(__code, 0 ,  _P1 )
 -D__CODE_MEMORY_LIST3__(_P1, _P2)=__CODE_MEM_HELPER3__(__code, 0 ,  _P1 ,  _P2 )
