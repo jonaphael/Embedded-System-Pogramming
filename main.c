@@ -1,5 +1,5 @@
 #include <stdint.h>
-#include "lm4f120h5qr.h"
+#include "tm4c_cmsis.h"
 #include "delay.h"
 
 #define LED_RED   (1U << 1)
@@ -17,61 +17,35 @@
 #define GPIOF_DATA (*((unsigned int *) (GPIOF_BASE + 0x3FCU))) // GPIOF DATA REGISTER
 **************************************************************************************/
 
-uint8_t  u8a, u8b;
-uint16_t u16c, u16d;
-uint32_t u32e, u32f;
-
-int8_t  s8;
-int16_t s16;
-int32_t s32;
 
 int main()
-{ 
-  
-  u8a  = sizeof(u8a);
-  u16c = sizeof(uint16_t);
-  u32e = sizeof(uint32_t);
-  
-  u8a  = 0xa1U;
-  u16c = 0xc1c2U;
-  u32e = 0xe1e2e3e4;
-  
-  u8b  = u8a;
-  u16d = u16c;
-  u32f = u32e;
-  
-  u16c = 40000U;
-  u16d = 30000U;
-  u32e = (uint32_t) u16c + u16d;
-  
-  u16c = 100U;
-  s32  = 10 - (int16_t)u16c;  
-    
-  SYSCTL_RCGCGPIO_R |= (1U << 5); /* Set Clock for GPIOF */
-  SYSCTL_GPIOHBCTL_R |= (1U << 5); /* Enable AHB for GPIOF */
-  GPIO_PORTF_AHB_DIR_R |= (LED_RED | LED_BLUE | LED_GREEN); /* Set pins 1,2 and 3 as outputs 0xEU*/
-  GPIO_PORTF_AHB_DEN_R |= (LED_RED | LED_BLUE | LED_GREEN);  /* Enable Digital 0xEU*/
+{     
+  SYSCTL->RCGC2 |= (1U << 5); /* Set Clock for GPIOF */
+  SYSCTL->GPIOHSCTL |= (1U << 5); /* Enable AHB for GPIOF */
+  GPIOF_HS->DIR |= (LED_RED | LED_BLUE | LED_GREEN); /* Set pins 1,2 and 3 as outputs 0xEU*/
+  GPIOF_HS->DEN |= (LED_RED | LED_BLUE | LED_GREEN);  /* Enable Digital 0xEU*/
   
   while(1){
     
-    GPIO_PORTF_AHB_DATA_BITS_R[LED_BLUE] = LED_BLUE; 
-    delay(5000);
+    uint32_t x = 500000;
     
-    GPIO_PORTF_AHB_DATA_BITS_R[LED_BLUE] = 0; 
-    delay(5000);
-    /*
-    GPIO_PORTF_AHB_DATA_BITS_R[LED_RED] = LED_RED; 
+    GPIOF_HS->DATA_Bits[LED_BLUE] = LED_BLUE; 
     delay(x);
     
-    GPIO_PORTF_AHB_DATA_BITS_R[LED_RED]= 0;
+    GPIOF_HS->DATA_Bits[LED_BLUE] =  0; 
     delay(x);
     
-    GPIO_PORTF_AHB_DATA_BITS_R[LED_GREEN]= LED_GREEN;
+    GPIOF_HS->DATA_Bits[LED_RED] = LED_RED; 
     delay(x);
     
-    GPIO_PORTF_AHB_DATA_BITS_R[LED_GREEN]= 0;
+    GPIOF_HS->DATA_Bits[LED_RED]= 0;
     delay(x);
-    */
+    
+    GPIOF_HS->DATA_Bits[LED_GREEN]= LED_GREEN;
+    delay(x);
+    
+    GPIOF_HS->DATA_Bits[LED_GREEN]= 0;
+    delay(x);
   }
   
  // return 0;   

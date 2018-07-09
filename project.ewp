@@ -344,7 +344,7 @@
                 </option>
                 <option>
                     <name>CCIncludePath2</name>
-                    <state></state>
+                    <state>C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\CMSIS\Include</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>
@@ -590,7 +590,7 @@
                 </option>
                 <option>
                     <name>AOutputFile</name>
-                    <state></state>
+                    <state>$FILE_BNAME$.o</state>
                 </option>
                 <option>
                     <name>ALimitErrorsCheck</name>
@@ -2045,5 +2045,8 @@
     </file>
     <file>
         <name>$PROJ_DIR$\main.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\tm4c_cmsis.h</name>
     </file>
 </project>
